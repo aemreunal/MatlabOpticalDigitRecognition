@@ -8,12 +8,18 @@ Running The Application
 
 To run the ODR system, run 'ODR.m'. You will be presented with 3 choices:
 
-    1 - Load a pre-created network (Use this to load a network file you created before. The file
-        you want to load must have the name 'networks.m')
-    2 - Create a network (Use this to create a new ODR network of specified nuber of hidden nodes
-        and number of training iterations. This created network will be saved with format
-        'network-<day>-<month>-<year>-<hour>-<minute>-<numHiddeUnits-<numIterations>.m', with
-        time values taken from current time)
+    1 - Load a pre-created network
+
+Use this to load a network file you created before. The file you want to load must have the name
+'networks.m'.
+
+    2 - Create a network
+
+Use this to create a new ODR network of specified number of hidden nodes and number of training
+iterations. This created network will be saved with format
+'network-\<day\>-\<month\>-\<year\>-\<hour\>-\<minute\>-\<numHiddeUnits-\<numIterations\>.m', with time values
+taken from current time.
+
     3 - Exit the program
 
 Performing Cross-Validation
