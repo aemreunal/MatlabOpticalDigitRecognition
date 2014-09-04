@@ -22,6 +22,8 @@ taken from current time.
 
     3 - Exit the program
 
+Exit the program without doing anything.
+
 Performing Cross-Validation
 ===========================
 
