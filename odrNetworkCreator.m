@@ -8,6 +8,8 @@
 %% ODRNetworkCreator: The trainer for a single ODR network object
 function [networks] = ODRNetworkCreator(numInputs, numHiddenUnits, epsilon, numIterations)
 
+    NUM_WORKERS = 4;
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%
     %% Create individual networks
@@ -30,20 +32,11 @@ function [networks] = ODRNetworkCreator(numInputs, numHiddenUnits, epsilon, numI
     %% then close the samples & pool
     %%
 
-    % Call 'local' cluster to initialise it
-    parcluster('local');
+    % Create a pool with NUM_WORKERS workers/threads at 'local' cluster
+    % trainingPool = parpool('local', NUM_WORKERS);
 
-    % Check pool status
-    poolSize = matlabpool('size');
-    if (poolSize ~= 8)
-        if (poolSize ~= 0)
-            % If there are more/less than 8 workers, close the current pool
-            matlabpool('close');
-        end % Else, there is no pool
-
-        % Create pool with 8 workers/threads
-        matlabpool('open', 8);
-    end
+    % Create a pool with NUM_WORKERS workers/threads
+    trainingPool = parpool(NUM_WORKERS);
 
     % Training
     parfor i = 1:10
@@ -75,7 +68,7 @@ function [networks] = ODRNetworkCreator(numInputs, numHiddenUnits, epsilon, numI
     end
 
     % Close the parallel computing pool
-    matlabpool('close');
+    delete(trainingPool)
 
     %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
